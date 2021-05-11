@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>VILT fotos</title>
+
+    <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+
+    <style type="text/css">
+      /*jQueryMosaic{width:100%;float:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;overflow:hidden}.jQueryMosaic>a,.jQueryMosaic>div,.jQueryMosaic>img,.jQueryMosaic>video{float:left}.jQueryMosaic>.item{position:relative}.jQueryMosaic>.item.withImage{background-size:cover}.jQueryMosaic>.item>.overlay{opacity:0;position:absolute;left:0;right:0;top:0;bottom:0;transition:opacity .2s ease-in-out;-moz-transition:opacity .2s ease-in-out;-webkit-transition:opacity .2s ease-in-out}.jQueryMosaic>.item:hover>.overlay{opacity:1}.jQueryMosaic>.item>.overlay>.texts{position:absolute;left:0;right:0;bottom:0;padding:15pt;background:rgba(0,0,0,.2);color:#fff}.jQueryMosaic>.item>.overlay>.texts h1,.jQueryMosaic>.item>.overlay>.texts h2{margin:0;line-height:1.3em}.jQueryMosaic>.item>.overlay>.texts h1{font-size:17pt}.jQueryMosaic>.item>.overlay>.texts h2{font-size:13pt}*/
+      .jQueryMosaic {
+        width: 100%;
+        background-color: #000;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div id="myMosaic" data-max-row-height="400" class="mosaico"></div>
+
+    <!-- jquery e plugins -->
+    <script src="js/jquery.min.js"></script>
+
+    <script>
+      !function($){$.Mosaic=function(e,t){var n,o,r=this;r.el=e,r.$el=$(e),r.$el.data("Mosaic",r);var i=!1;r.init=function(){r.options=n=$.extend({},$.Mosaic.defaults,r.$el.data(),t),$(r.el).addClass("jQueryMosaic"),n.outerMargin&&$(r.el).css("padding",n.outerMargin),n.innerGap&&$(r.el).css("margin-bottom",-1*n.innerGap),r.getItems().each(function(e,t){$(t).attr("width")&&$(t).width($(t).attr("width")),$(t).attr("height")&&$(t).height($(t).attr("height"))}),r.fit(),n.refitOnResize&&$(window).on("resize",null,null,function(){$(r.el).is(":hidden")||(n.refitOnResizeDelay?(i&&clearTimeout(i),i=setTimeout(function(){r.fit()},n.refitOnResizeDelay)):r.fit())})},r.getItems=function(){return $("> div:not([data-no-mosaic=true]), > a:not([data-no-mosaic=true]), > img:not([data-no-mosaic=true]), > video:not([data-no-mosaic=true])",r.el)},r.getItemAtIndex=function(e){return!!r.getItems()[e]&&$(r.getItems()[e])},r.getItemsSubset=function(e,t){var i=r.getItems();return t||(t=i.length-e),!(e>i.length)&&(e+t>i.length&&(t=i.length-e),i.slice(e,e+t))},r.isLastItemsSubset=function(e,t){var i=r.getItems();return e>i.length||e+t>i.length},r.getItemWidth=function(e){return $(e).outerWidth()?$(e).outerWidth():$(e).attr("width")?$(e).attr("width"):void 0},r.getItemHeight=function(e){return $(e).outerHeight()?$(e).outerHeight():$(e).attr("height")?$(e).attr("height"):void 0},r.getItemAspectRatio=function(e){if($(e).data("aspect-ratio"))return $(e).data("aspect-ratio");if(r.getItemWidth(e)&&r.getItemHeight(e)){var t=r.getItemWidth(e)/r.getItemHeight(e);return $(e).data("aspect-ratio",t),t}return n.defaultAspectRatio},r.getItemWidthForGivenHeight=function(e,t){return t*r.getItemAspectRatio(e)},r.getItemHeightForGivenWidth=function(e,t){return t/r.getItemAspectRatio(e)},r.setItemSizeByGivenHeight=function(e,t,i){var s=Math.floor(r.getItemWidthForGivenHeight(e,t));return $(e).width(s+"px"),i?$(e).height("auto"):$(e).height(Math.floor(t)),r.handleHighResForItem(e),s},r.handleHighResForItem=function(e){if(n.highResImagesWidthThreshold&&$(e).width()>n.highResImagesWidthThreshold){var t=$("[data-high-res-background-image-url]",e);$(e).data("high-res-background-image-url")&&(t=$(t).add(e)),$(t).each(function(){$(this).css("background-image",'url("'+$(this).data("high-res-background-image-url")+'"'),$(this).addClass("highRes")});t=$("[data-high-res-image-src]",e);$(e).data("high-res-image-src")&&(t=$(t).add(e)),$(t).each(function(){$(this).attr("src",$(this).data("high-res-image-src")),$(this).addClass("highRes")})}},r.calculateHeightToFit=function(e){var t=0;return e.each(function(){t+=parseFloat(r.getItemAspectRatio(this))}),(o-n.innerGap*(e.length-1))/t},r.retrieveBaseWidth=function(){var e=parseFloat($(r.el).width());o=$.isNumeric(e)?e:0},r.isBelowResponsiveWidthThreshold=function(){return n.responsiveWidthThreshold&&o<n.responsiveWidthThreshold},r.fit=function(){if(r.retrieveBaseWidth(),r.isBelowResponsiveWidthThreshold()){var e=r.getItems();return n.maxItemsToShowWhenResponsiveThresholdSurpassed&&($(e).slice(n.maxItemsToShowWhenResponsiveThresholdSurpassed).remove(),e=$(e).slice(0,n.maxItemsToShowWhenResponsiveThresholdSurpassed)),void e.each(function(){var e=r.getItemHeightForGivenWidth(this,o);$(this).width(o),$(this).data("only-force-height-when-necessary")?$(this).height("auto"):$(this).height(e),n.innerGap&&$(this).css("margin-bottom",n.innerGap)})}for(var t=1,i=0,s=!1,a=1;;){if(e=r.getItemsSubset(i,t),r.isLastItemsSubset(i,t)){e.length&&r.fitItems(e);break}if(r.calculateHeightToFit(e)>n.maxRowHeight)t++;else{if(r.fitItems(e),i+=t,t=1,s=!0,!r.isBelowResponsiveWidthThreshold()&&n.maxRows&&a==n.maxRows)return void r.getItemsSubset(i).each(function(){$(this).hide()});a++}}s||(n.showTailWhenNotEnoughItemsForEvenOneRow&&(n.maxRowHeightPolicy="tail"),r.fitItems(r.getItems()))},r.fitItems=function(t){var i=!1,s=r.calculateHeightToFit(t);if(s>n.maxRowHeight)switch(n.maxRowHeightPolicy){case"skip":return void t.each(function(){$(this).hide()});case"crop":s=n.maxRowHeight;break;case"oversize":i=!0;break;case"tail":s=n.maxRowHeight;var e=!0}t.each(function(){$(this).show()});var a=0;if(t.each(function(e){a+=r.setItemSizeByGivenHeight(this,s,i&&$(this).data("only-force-height-when-necessary")),n.innerGap&&($(this).css("margin-right",e<t.length-1?n.innerGap:0),$(this).css("margin-bottom",n.innerGap))}),!e&&a!=o-(t.length-1)*n.innerGap){difference=o-(t.length-1)*n.innerGap-a;var h=t.last().width();t.last().width(h+difference)}},r.init()},$.Mosaic.defaults={maxRowHeight:400,refitOnResize:!0,refitOnResizeDelay:!1,defaultAspectRatio:1,maxRowHeightPolicy:"skip",maxRows:!1,highResImagesWidthThreshold:350,outerMargin:0,innerGap:0,responsiveWidthThreshold:!1,maxItemsToShowWhenResponsiveThresholdSurpassed:!1,showTailWhenNotEnoughItemsForEvenOneRow:!1},$.fn.Mosaic=function(options,params){return this.each(function(){var me=$(this).data("Mosaic");(typeof options).match("object|undefined")?new $.Mosaic(this,options):eval("me."+options)(params)})}}(jQuery);
+      </script>
+
+      <script type="text/javascript">
+        (function($){
+     
+          $.fn.shuffle = function() {
+
+              var allElems = this.get(),
+                  getRandom = function(max) {
+                      return Math.floor(Math.random() * max);
+                  },
+                  shuffled = $.map(allElems, function(){
+                      var random = getRandom(allElems.length),
+                          randEl = $(allElems[random]).clone(true)[0];
+                      allElems.splice(random, 1);
+                      return randEl;
+                 });
+
+              this.each(function(i){
+                  $(this).replaceWith($(shuffled[i]));
+              });
+
+              return $(shuffled);
+
+          };
+
+        })(jQuery);
+
+      $(document).ready(function (){
+
+        var html = '';
+
+        var i;
+        for (i = 1; i < 5; i++) {
+          html += "<img src='fotos/"+i+".jpg'>";
+        }
+
+        $('.mosaico').append(html);
+
+        $('#myMosaic').Mosaic();
+
+        $('#myMosaic img').shuffle();
+
+      });
+    </script>
+
+  </body>
+</html>
